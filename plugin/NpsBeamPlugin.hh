@@ -21,12 +21,31 @@
 #include <string>
 
 #include "gazebo/common/Plugin.hh"
-#include "gazebo/sensors/CameraSensor.hh"
+//#include "gazebo/sensors/CameraSensor.hh"
 #include "gazebo/rendering/RenderTypes.hh"
 #include "gazebo/util/system.hh"
 
+
+
 namespace gazebo
 {
+
+  // define these because Gazebo doesn't have them yet, see SensorTypes.hh
+  namespace sensors
+  {
+    class NpsBeamSensor;
+
+    /// \def NpsBeamSensorPtr
+    /// \brief Shared pointer to NpsBeamSensor
+    typedef std::shared_ptr<NpsBeamSensor> NpsBeamSensorPtr;
+
+    /// \def GpuRaySensor_V
+    /// \brief Vector of GpuRaySensor shared pointers
+    typedef std::vector<NpsBeamSensorPtr> NpsBeamSensor_V;
+
+    // and for sensor noise type, maybe for now try GPU_RAY_NOISE
+  }
+
   class GAZEBO_VISIBLE NpsBeamPlugin : public SensorPlugin
   {
     public: NpsBeamPlugin();
@@ -39,7 +58,7 @@ namespace gazebo
 
     protected: unsigned int width, height/*, depth*/;
 
-    protected: sensors::GpuRaySensorPtr parentSensor;
+    protected: sensors::NpsBeamSensorPtr parentSensor;
 
     private: event::ConnectionPtr newLaserFrameConnection;
   };

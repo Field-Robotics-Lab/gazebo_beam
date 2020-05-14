@@ -2,12 +2,12 @@ cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
 
 find_package(gazebo REQUIRED)
 
-include_directories(${GAZEBO_INCLUDE_DIRS})
+include_directories(${GAZEBO_INCLUDE_DIRS} ../sensor)
 link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
-add_library(nps_beam SHARED NpsBeamPlugin.cc)
-target_link_libraries(nps_beam ${GAZEBO_LIBRARIES})
+add_library(NpsBeamPlugin SHARED NpsBeamPlugin.cc)
+target_link_libraries(NpsBeamPlugin ${GAZEBO_LIBRARIES})
 
 
 

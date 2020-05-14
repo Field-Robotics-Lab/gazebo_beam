@@ -15,7 +15,7 @@
  *
 */
 #include <functional>
-#include <gazebo/sensors/GpuRaySensor.hh>
+#include "NpsBeamSensor.hh"
 #include "NpsBeamPlugin.hh"
 
 using namespace gazebo;
@@ -32,11 +32,11 @@ void NpsBeamPlugin::Load(sensors::SensorPtr _sensor,
                               sdf::ElementPtr /*_sdf*/)
 {
   this->parentSensor =
-    std::dynamic_pointer_cast<sensors::GpuRaySensor>(_sensor);
+    std::dynamic_pointer_cast<sensors::NpsBeamSensor>(_sensor);
 
   if (!this->parentSensor)
   {
-    gzerr << "NpsBeamPlugin not attached to a GpuLaser sensor\n";
+    gzerr << "NpsBeamPlugin not attached to a NpsBeam sensor\n";
     return;
   }
 
