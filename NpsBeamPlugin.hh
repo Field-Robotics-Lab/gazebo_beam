@@ -15,8 +15,8 @@
  *
 */
 
-#ifndef _NPS_GPU_RAY_SONAR_PLUGIN_HH_
-#define _NPS_GPU_RAY_SONAR_PLUGIN_HH_
+#ifndef _NPS_BEAM_PLUGIN_HH_
+#define _NPS_BEAM_PLUGIN_HH_
 
 #include <string>
 
@@ -27,9 +27,9 @@
 
 namespace gazebo
 {
-  class GAZEBO_VISIBLE NpsGpuRaySonarPlugin : public SensorPlugin
+  class GAZEBO_VISIBLE NpsBeamPlugin : public SensorPlugin
   {
-    public: NpsGpuRaySonarPlugin();
+    public: NpsBeamPlugin();
 
     public: void Load(sensors::SensorPtr _sensor, sdf::ElementPtr _sdf);
 

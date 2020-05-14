@@ -6,8 +6,8 @@ include_directories(${GAZEBO_INCLUDE_DIRS})
 link_directories(${GAZEBO_LIBRARY_DIRS})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${GAZEBO_CXX_FLAGS}")
 
-add_library(nps_gpu_ray_sonar SHARED NpsGpuRaySonarPlugin.cc)
-target_link_libraries(nps_gpu_ray_sonar ${GAZEBO_LIBRARIES})
+add_library(nps_beam SHARED NpsBeamPlugin.cc)
+target_link_libraries(nps_beam ${GAZEBO_LIBRARIES})
 
 
 

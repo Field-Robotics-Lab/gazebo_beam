@@ -16,20 +16,19 @@
 */
 #include <functional>
 #include <gazebo/sensors/GpuRaySensor.hh>
-//#include "plugins/NpsGpuRaySonarPlugin.hh"
-#include "NpsGpuRaySonarPlugin.hh"
+#include "NpsBeamPlugin.hh"
 
 using namespace gazebo;
-GZ_REGISTER_SENSOR_PLUGIN(NpsGpuRaySonarPlugin)
+GZ_REGISTER_SENSOR_PLUGIN(NpsBeamPlugin)
 
 /////////////////////////////////////////////////
-NpsGpuRaySonarPlugin::NpsGpuRaySonarPlugin()
+NpsBeamPlugin::NpsBeamPlugin()
 : SensorPlugin(), width(0), height(0)
 {
 }
 
 /////////////////////////////////////////////////
-void NpsGpuRaySonarPlugin::Load(sensors::SensorPtr _sensor,
+void NpsBeamPlugin::Load(sensors::SensorPtr _sensor,
                               sdf::ElementPtr /*_sdf*/)
 {
   this->parentSensor =
@@ -37,7 +36,7 @@ void NpsGpuRaySonarPlugin::Load(sensors::SensorPtr _sensor,
 
   if (!this->parentSensor)
   {
-    gzerr << "NpsGpuRaySonarPlugin not attached to a GpuLaser sensor\n";
+    gzerr << "NpsBeamPlugin not attached to a GpuLaser sensor\n";
     return;
   }
 
@@ -45,7 +44,7 @@ void NpsGpuRaySonarPlugin::Load(sensors::SensorPtr _sensor,
   this->height = this->parentSensor->VerticalRangeCount();
 
   this->newLaserFrameConnection = this->parentSensor->ConnectNewLaserFrame(
-      std::bind(&NpsGpuRaySonarPlugin::OnNewLaserFrame, this,
+      std::bind(&NpsBeamPlugin::OnNewLaserFrame, this,
         std::placeholders::_1, std::placeholders::_2, std::placeholders::_3,
         std::placeholders::_4, std::placeholders::_5));
 
@@ -53,7 +52,7 @@ void NpsGpuRaySonarPlugin::Load(sensors::SensorPtr _sensor,
 }
 
 /////////////////////////////////////////////////
-void NpsGpuRaySonarPlugin::OnNewLaserFrame(const float * /*_image*/,
+void NpsBeamPlugin::OnNewLaserFrame(const float * /*_image*/,
     unsigned int /*_width*/, unsigned int /*_height*/,
     unsigned int /*_depth*/, const std::string &/*_format*/)
 {
